@@ -1,0 +1,25 @@
+#header{
+	background: #5edfa4;
+	height: 70px;
+}
+
+#footer{
+	background: #5edfa4;
+	height: 30px;
+}
+
+.list{
+	margin: 10px 0;
+}
+
+.list-title{
+	background: #4095de;
+	padding: 5px 10px;
+}
+
+.list-content{
+	background: #e6eff7;
+	height: 100px;
+	overflow: hidden;
+	padding: 5px 10px;
+}
