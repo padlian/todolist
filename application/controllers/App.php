@@ -25,12 +25,36 @@ class App extends CI_Controller {
 
 	public function index()
 	{
-		$data['berita']=$this->app_model->get_list();
+		$this->load->helper('form');
+		$data['list']=$this->app_model->get_list();
 		$this->load->view('frontend', $data);
 	}
 
-	public function proses()
+	public function data_json()
 	{
-
+		$this->load->view('depan');
 	}
+
+	public function get_json()
+	{
+		$data['list']=$this->app_model->get_list();
+		$this->load->view('get_json', $data);
+	}
+
+	public function get_list()
+	{
+		$data['list']=$this->app_model->get_list();
+		$this->load->view('get_list', $data);
+	}
+
+	public function proses(){
+		$this->app_model->simpan_proses();
+		redirect('');
+	}
+
+	public function proses_ajax(){
+		$this->app_model->simpan_proses();
+	}
+
+
 }

@@ -65,49 +65,28 @@
     <div id="notif" style="display:none">
       <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Yeey!</strong> TAmbah List Berhasil
+        <strong>Yeey!</strong> Tambah List Berhasil
       </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-      function ambil_data(){
-        $.ajax({
-          type:"POST",
-          url:'<?php base_url() ?>get_list',
-          data:'',
-          success:function(data){
-            $("#isi_list").html(data);
-          } 
-        });
-      }
-      ambil_data();
-
-      function notif_sukses(){
-        var notif=$("#notif").html();
-        $("#notif_area").html(notif);
-      }
-
-      $("#refresh").click(function(){
-        ambil_data();
+      $.ajax({
+        url: "<?php echo base_url() ?>json",
+        dataType: "text",
+        success: function(data) {
+            var json = $.parseJSON(data);
+            for (var i=0;i<json.length;++i)
+            {
+              $('#isi_list').append(
+                    '<div class=\"col-md-3 list\"><div class=\"list-title\">'+json[i].judul+'</div><div class=\"list-content\">'+json[i].judul+'</div></div>'
+              );
+            }
+        }
       });
-
-      $("#btn_simpan").click(function(){
-        $.ajax({
-          type:"POST",
-          url:'<?php base_url() ?>app/proses_ajax',
-          data:$("#form_list").serialize(),
-          success:function(data){
-            ambil_data();
-            $("#form_list").trigger('reset');
-            notif_sukses();
-          } 
-        });
-      });
-      
     </script>
   </body>
 </html>

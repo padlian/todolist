@@ -14,9 +14,8 @@ class App_model extends CI_Model {
 
 	public function simpan_proses(){
 		$data=array(
-			'judul' => $this->input->post('judul'),
-			'isi' => $this->input->post('isi'),
-			'slug' => $this->input->post('slug')
+			'judul' => $this->input->post('todolist'),
+			'deskripsi' => $this->input->post('description')
 		);
 		return $this->db->insert('list', $data);
 	}
