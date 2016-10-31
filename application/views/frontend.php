@@ -124,15 +124,18 @@
       function after_load(){
         $(".btn_hapus").click(function(){
           var id= $(this).data('id');
-          $.ajax({
-            type:"POST",
-            url:'<?php base_url() ?>hapus/'+id,
-            data:'',
-            success:function(data){
-              ambil_data();
-              notif_hapus();
-            } 
-          });
+          if (confirm("Yakin brur?")) {
+            $.ajax({
+              type:"POST",
+              url:'<?php base_url() ?>hapus/'+id,
+              data:'',
+              success:function(data){
+                ambil_data();
+                notif_hapus();
+              } 
+            });
+          }
+          return false;
         });
       }
     </script>
