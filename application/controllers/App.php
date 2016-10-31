@@ -56,5 +56,8 @@ class App extends CI_Controller {
 		$this->app_model->simpan_proses();
 	}
 
+	public function proses_hapus($id){
+		$this->app_model->hapus_proses($id);
+	}
 
 }

@@ -69,6 +69,13 @@
       </div>
     </div>
 
+    <div id="notif_hapus" style="display:none">
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Weeew!</strong> List dihapus
+      </div>
+    </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -81,6 +88,7 @@
           data:'',
           success:function(data){
             $("#isi_list").html(data);
+            after_load();
           } 
         });
       }
@@ -88,6 +96,11 @@
 
       function notif_sukses(){
         var notif=$("#notif").html();
+        $("#notif_area").html(notif);
+      }
+
+      function notif_hapus(){
+        var notif=$("#notif_hapus").html();
         $("#notif_area").html(notif);
       }
 
@@ -108,6 +121,20 @@
         });
       });
       
+      function after_load(){
+        $(".btn_hapus").click(function(){
+          var id= $(this).data('id');
+          $.ajax({
+            type:"POST",
+            url:'<?php base_url() ?>hapus/'+id,
+            data:'',
+            success:function(data){
+              ambil_data();
+              notif_hapus();
+            } 
+          });
+        });
+      }
     </script>
   </body>
 </html>

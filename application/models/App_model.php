@@ -19,4 +19,8 @@ class App_model extends CI_Model {
 		);
 		return $this->db->insert('list', $data);
 	}
+
+	public function hapus_proses($id){
+		return $this->db->delete('list', array('id_list'=> $id));
+	}
 }
