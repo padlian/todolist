@@ -21,7 +21,9 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-12" id="header">Header</div>
+        <div class="col-md-12" id="header">
+          <a href="<?php base_url() ?>login/logout" class="btn btn-primary">Logout</a>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12" id="notif_area"></div>

@@ -21,13 +21,22 @@ class App extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('app_model');
+		$this->load->library('session');
 	}
 
 	public function index()
 	{
-		$this->load->helper('form');
-		$data['list']=$this->app_model->get_list();
-		$this->load->view('frontend', $data);
+		//echo $this->session->userdata('username');
+		$status=$this->session->userdata('logged_in');
+		if ($status) {
+			$this->load->helper('form');
+			$data['list']=$this->app_model->get_list();
+			$this->load->view('frontend', $data);
+		}
+		else{
+			redirect('login');
+		}
+		
 	}
 
 	public function data_json()
